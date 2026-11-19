@@ -515,17 +515,32 @@ footer {
 (function() {
   'use strict';
   try {
-    const DEFAULT_DAYS = Array.from({length:24}, (_,i) => ({
-      day: i+1,
-      title: i === 23 ? "Frohe Weihnachten!" : "Inhalt folgt",
-      subtitle: i === 23 ? "Ein herzlicher Gruß" : "",
-      cat: i === 23 ? "surprise" : "empty",
-      image: "",
-      video: "",
-      content: i === 23 ? "Frohe Weihnachten und ein gutes neues Jahr! 🎄✨" : "Hier kommt bald etwas Spannendes...",
-      link: "",
-      linkText: ""
-    }));
+    const DEFAULT_DAYS = [
+      {"day":1,"title":"KI-Adventskalender","subtitle":"","cat":"tool","image":"media/tag1.jpg","video":"","content":"Neben diesem Kalender gibt es viele weitere, bei denen es sich lohnt, einmal vorbei zu schauen. Einer davon ist der KI-Adventskalender:","link":"https://www.ki-adventskalender.de/de","linkText":"Zum KI-Adventskalender"},
+      {"day":2,"title":"Virtuelles Jahresstartmeeting","subtitle":"am 19.01.2027 von 15.00 Uhr bis 16.00 Uhr","cat":"veranstaltung","image":"","video":"","content":"Wir informieren Sie über die wichtigsten Themen rund um Medienbildung und Digitalisierung im neuen Kalenderjahr 2027 an den Schulen unseres Landes und möchten mit Ihnen den gemeinsamen Austausch starten.","link":"https://lti-waiting.its.sdui.de/join/e596db5e-35ab-4857-b328-8a0d5db05203/TVHQa0IVvukzzJSBt2hh","linkText":"Zum BBB-Raum"},
+      {"day":3,"title":"Tilly Nordwoods Fake-Gesicht","subtitle":"Oder: Wenn die KI Personen erschafft","cat":"info","image":"","video":"","content":"Mit KI scheint nichts mehr unmöglich. Hier ein interessantes ntv-Video zu Tilly Norwood als eine der ersten KI-generierten Schauspielerinnen auf der Welt.","link":"https://www.n-tv.de/mediathek/videos/unterhaltung/Wer-wirklich-hinter-Tilly-Norwoods-Fake-Gesicht-steckt-id31415497.html","linkText":"Zum Video"},
+      {"day":4,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":5,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":6,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":7,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":8,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":9,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":10,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":11,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":12,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":13,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":14,"title":"Online-Lerntag bald verpflichtend","subtitle":"ACHTUNG SATIRE!","cat":"info","image":"media/tag14.jpg","video":"","content":"\"Online\" heißt das Zauberwort, \nUnterricht an jedem Ort.\nGanz entspannt und von Zuhause\nklappt der Tag auch ohne Pause. \nDa wünscht sich jeder, jung und alt:\nHoffentlich kommt der nächste bald!","link":"","linkText":""},
+      {"day":15,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":16,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":17,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":18,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":19,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":20,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":21,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":22,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":23,"title":"Inhalt folgt","subtitle":"","cat":"empty","image":"","video":"","content":"Hier kommt bald etwas Spannendes...","link":"","linkText":""},
+      {"day":24,"title":"Frohe Weihnachten!","subtitle":"Ein herzlicher Gruß","cat":"surprise","image":"","video":"","content":"Frohe Weihnachten und ein gutes neues Jahr! 🎄✨","link":"","linkText":""}
+    ];
 
     function safeGet(key, fallback) {
       try {
