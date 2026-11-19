@@ -41,22 +41,27 @@ body {
   100% { transform: translateY(110vh) rotate(360deg); }
 }
 header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  position: relative;
+  z-index: 2;
   background: url('media/header.jpg') center/cover no-repeat;
-  min-height: 280px;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: white;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-
-  text-align: center;
-  padding: 1.5rem 1rem 0.5rem;
-  position: relative;
-  z-index: 2;
-  background: linear-gradient(180deg, #fff8ee 0%, #fff8ee 70%, transparent 100%);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: -1;
 }
 .banner {
-  background: linear-gradient(135deg, #b91c1c, #dc2626);
+  background: rgba(185, 28, 28, 0.9);
   color: white;
   display: inline-block;
   padding: 0.35rem 1.2rem;
@@ -65,16 +70,16 @@ header {
   font-size: 0.85rem;
   letter-spacing: 1px;
   margin-bottom: 0.5rem;
+  align-self: center;
 }
 h1 {
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-weight: 800;
-  color: #7f1d1d;
-  text-shadow: 2px 2px 0 #fff, 4px 4px 8px rgba(0,0,0,0.1);
-  font-family: 'Nunito', cursive;
+  color: white;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.6);
   margin: 0.25rem 0;
 }
-.subtitle { font-size: 1.3rem; margin-top: 0.25rem; color: #92400e; font-weight: 600; }
+.subtitle { font-size: 1.4rem; margin-top: 0.25rem; color: #fef3c7; font-weight: 600; text-shadow: 0 2px 6px rgba(0,0,0,0.5); }
 .layout {
   display: flex;
   flex-wrap: wrap;
@@ -226,8 +231,33 @@ h1 {
 .door.wrap-7 .door-inner::before { content: "★"; left: 15%; top: 70%; }
 .door.wrap-8 .door-inner::before { content: "✧"; left: 80%; top: 75%; }
 
-.door.opened .door-inner { filter: brightness(1.08) saturate(1.1); }
-.door.opened .bow { opacity: 0.65; }
+.door.opened .door-num {
+  background: #16a34a;
+  color: white;
+  box-shadow: 0 0 0 3px white, 0 2px 6px rgba(0,0,0,0.2);
+}
+.door.opened .door-inner::after {
+  content: "✓";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #16a34a;
+  color: white;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  z-index: 6;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.door.opened .ribbon-v,
+.door.opened .ribbon-h {
+  opacity: 0.7;
+}
 .modal {
   position: fixed;
   inset: 0;
@@ -386,6 +416,7 @@ footer {
         <span class="cat-pill surprise">Überraschung</span>
       </div>
       <div class="stats" id="stats">0 von 24 geöffnet</div>
+      <p style="margin-top:0.75rem; font-size:0.8rem; opacity:0.75;">Testphase: Alle Türchen sind aktuell öffenbar. Ab 1. Dezember nur noch am jeweiligen Tag.</p>
     </aside>
     <div class="calendar-wrap">
       <div class="calendar" id="calendar"></div>
@@ -517,6 +548,8 @@ footer {
     function canOpen(day) {
       if (testMode) return true;
       const now = new Date();
+      // Vor dem 1. Dezember: alle Türchen öffnen (Testphase)
+      if (now.getMonth() < 11) return true;
       const target = new Date(now.getFullYear(), 11, day);
       return now >= target;
     }
