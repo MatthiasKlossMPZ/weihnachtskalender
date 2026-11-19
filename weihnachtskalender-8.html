@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weihnachtskalender 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" onerror="this.remove()">
+<style>
+:root {
+  --cream: #fff8ee;
+  --dark: #3a1d1d;
+  --red: #e11d48;
+  --green: #059669;
+  --orange: #f59e0b;
+  --blue: #0ea5e9;
+  --light: #fef3c7;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Nunito', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.snowflakes {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.snowflake {
+  position: absolute;
+  color: #fff;
+  font-size: 1.2em;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(360deg); }
+}
+header {
+  text-align: center;
+  padding: 1.5rem 1rem 0.5rem;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, #fff8ee 0%, #fff8ee 70%, transparent 100%);
+}
+.banner {
+  background: linear-gradient(135deg, #b91c1c, #dc2626);
+  color: white;
+  display: inline-block;
+  padding: 0.35rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #7f1d1d;
+  text-shadow: 2px 2px 0 #fff, 4px 4px 8px rgba(0,0,0,0.1);
+  font-family: 'Nunito', cursive;
+  margin: 0.25rem 0;
+}
+.subtitle { font-size: 1.3rem; margin-top: 0.25rem; color: #92400e; font-weight: 600; }
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 1rem auto 2rem;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+}
+.sidebar {
+  flex: 0 0 280px;
+  background: white;
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  height: fit-content;
+}
+.sidebar h2 {
+  color: #b91c1c;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.sidebar p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; color: #4b5563; }
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.cat-pill {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+}
+.cat-pill.veranstaltung { background: #f43f5e; }
+.cat-pill.tool { background: #f59e0b; }
+.cat-pill.info { background: #10b981; }
+.cat-pill.surprise { background: #38bdf8; }
+.stats {
+  margin: 0.5rem 0 0;
+  padding: 0.4rem 0.8rem;
+  background: #fef3c7;
+  border-radius: 999px;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.calendar-wrap {
+  flex: 1;
+  min-width: 300px;
+  background: #166534;
+  border-radius: 24px;
+  padding: 1rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+@media (min-width: 700px) {
+  .calendar { grid-template-columns: repeat(6, 1fr); gap: 0.75rem; }
+}
+.door {
+  aspect-ratio: 1;
+  border-radius: 16px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.door:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+.door.locked { cursor: not-allowed; opacity: 0.7; }
+.door.locked:hover { transform: none; }
+
+.door-inner {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.door.wrap-1 .door-inner { background: linear-gradient(135deg, #ef4444, #dc2626); }
+.door.wrap-2 .door-inner { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.door.wrap-3 .door-inner { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.door.wrap-4 .door-inner { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.door.wrap-5 .door-inner { background: linear-gradient(135deg, #a855f7, #9333ea); }
+.door.wrap-6 .door-inner { background: linear-gradient(135deg, #ec4899, #db2777); }
+.door.wrap-7 .door-inner { background: linear-gradient(135deg, #14b8a6, #0d9488); }
+.door.wrap-8 .door-inner { background: linear-gradient(135deg, #f97316, #ea580c); }
+
+.ribbon-v {
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 18%;
+  background: linear-gradient(90deg, #fff 0%, #fef3c7 50%, #fff 100%);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.ribbon-h {
+  position: absolute;
+  top: 50%;
+  left: 0; right: 0;
+  height: 18%;
+  background: linear-gradient(0deg, #fff 0%, #fef3c7 50%, #fff 100%);
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.door-num {
+  position: relative;
+  z-index: 5;
+  width: 42%;
+  height: 42%;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1f2937;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+@media (min-width: 640px) {
+  .door-num { font-size: 1.6rem; }
+}
+
+/* Kleine Sterne / Punkte als Deko */
+.door-inner::before {
+  content: "★";
+  position: absolute;
+  font-size: 0.7rem;
+  opacity: 0.4;
+  top: 15%;
+  left: 12%;
+  z-index: 1;
+}
+.door.wrap-2 .door-inner::before { content: "❄"; left: 78%; top: 20%; }
+.door.wrap-3 .door-inner::before { content: "✧"; left: 18%; top: 72%; }
+.door.wrap-4 .door-inner::before { content: "✦"; left: 75%; top: 68%; }
+.door.wrap-5 .door-inner::before { content: "⋆"; left: 22%; top: 25%; }
+.door.wrap-6 .door-inner::before { content: "❄"; left: 70%; top: 18%; }
+.door.wrap-7 .door-inner::before { content: "★"; left: 15%; top: 70%; }
+.door.wrap-8 .door-inner::before { content: "✧"; left: 80%; top: 75%; }
+
+.door.opened .door-inner { filter: brightness(1.08) saturate(1.1); }
+.door.opened .bow { opacity: 0.65; }
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+.modal.open { display: flex; }
+.modal-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  padding: 0;
+}
+.modal-header {
+  padding: 1.25rem 1.5rem 1rem;
+  color: white;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+}
+.modal-header.cat-veranstaltung { background: linear-gradient(135deg, #f43f5e, #dc2626); }
+.modal-header.cat-tool { background: linear-gradient(135deg, #fbbf24, #f97316); }
+.modal-header.cat-info { background: linear-gradient(135deg, #10b981, #15803d); }
+.modal-header.cat-surprise { background: linear-gradient(135deg, #38bdf8, #6366f1); }
+.modal-header.cat-empty { background: linear-gradient(135deg, #fca5a5, #fdba74); color: #7f1d1d; }
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: rgba(255,255,255,0.25);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+.modal-cat-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.25);
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.modal h2 { margin: 0 0 0.25rem; font-size: 1.55rem; line-height: 1.2; }
+.modal .subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 0.75rem; font-weight: 600; }
+.modal-media {
+  margin: 0.75rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+.modal-media img, .modal-media video, .modal-media iframe {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  display: block;
+}
+.modal-media iframe { height: 220px; border: none; }
+.modal-text { line-height: 1.6; margin: 0.75rem 0; }
+.modal-btn {
+  display: inline-block;
+  background: #b91c1c;
+  color: white !important;
+  padding: 0.65rem 1.2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+.modal-header.cat-veranstaltung ~ .modal-body .modal-btn { background: #e11d48; }
+.modal-header.cat-tool ~ .modal-body .modal-btn { background: #f59e0b; }
+.modal-header.cat-info ~ .modal-body .modal-btn { background: #059669; }
+.modal-header.cat-surprise ~ .modal-body .modal-btn { background: #0ea5e9; }
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  position: relative;
+  z-index: 2;
+}
+#admin-panel {
+  display: none;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+#admin-panel.active { display: block; }
+.admin-form label { display: block; margin: 0.75rem 0 0.25rem; font-weight: 600; }
+.admin-form input, .admin-form textarea, .admin-form select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: inherit;
+}
+.admin-form textarea { min-height: 100px; }
+.btn {
+  background: #b91c1c;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+}
+.btn.secondary { background: #666; }
+.day-list { margin-top: 1rem; }
+.day-item { padding: 0.5rem; border-bottom: 1px solid #eee; cursor: pointer; }
+.day-item:hover { background: #f9fafb; }
+</style>
+</head>
+<body>
+<div class="snowflakes" id="snow"></div>
+
+<header>
+  <div class="banner">ADVENTSKALENDER 2026</div>
+  <h1>MPZ X-Mas</h1>
+  <p class="subtitle">Unser Weihnachtskalender</p>
+</header>
+
+<main>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>Hallo liebe Kolleginnen und Kollegen! 🎄</h2>
+      <p>Jeden Tag wartet ein neues Türchen auf euch: Veranstaltungen, digitale Helfer und Neuigkeiten aus dem MPZ.</p>
+      <div class="categories">
+        <span class="cat-pill veranstaltung">Veranstaltung</span>
+        <span class="cat-pill tool">Digitales Tool</span>
+        <span class="cat-pill info">Information</span>
+        <span class="cat-pill surprise">Überraschung</span>
+      </div>
+      <div class="stats" id="stats">0 von 24 geöffnet</div>
+    </aside>
+    <div class="calendar-wrap">
+      <div class="calendar" id="calendar"></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Frohe Weihnachten! ✨</p>
+  <p style="margin-top:0.5rem; font-size:0.75rem;">
+    <a href="#" id="impressum-link" style="color:inherit; margin:0 0.5rem;">Impressum</a>
+    <a href="#" id="datenschutz-link" style="color:inherit; margin:0 0.5rem;">Datenschutz</a>
+    <a href="#" id="admin-link" style="color:inherit; opacity:0.5; margin:0 0.5rem;">Admin</a>
+  </p>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <div class="modal-header" id="modal-header">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="modal-cat-badge" id="modal-badge"></div>
+      <h2 id="modal-title"></h2>
+      <div class="subtitle" id="modal-subtitle"></div>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<div id="admin-panel">
+  <h2>Admin – Inhalte pflegen</h2>
+  <p>Wähle einen Tag und bearbeite den Inhalt. Änderungen werden lokal im Browser gespeichert.<br>
+  <strong>Für GitHub Pages:</strong> Lege Medien (Fotos/Videos) in einen Ordner <code>media/</code> neben die HTML-Datei und trage relative Pfade ein (z. B. <code>media/tag5.jpg</code>). Data-URLs funktionieren lokal, sind aber für das Repo unpraktisch.</p>
+  <div class="day-list" id="admin-days"></div>
+  <form class="admin-form" id="admin-form" style="display:none; margin-top:1.5rem;">
+    <input type="hidden" id="edit-day">
+    <label>Überschrift</label>
+    <input type="text" id="edit-title" required>
+    <label>Unterüberschrift</label>
+    <input type="text" id="edit-subtitle">
+    <label>Kategorie (für Farbe)</label>
+    <select id="edit-cat">
+      <option value="veranstaltung">Veranstaltung (rot)</option>
+      <option value="tool">Digitales Tool (orange)</option>
+      <option value="info">Information (grün)</option>
+      <option value="surprise">Überraschung (blau)</option>
+      <option value="empty">Leer / folgt</option>
+    </select>
+    <label>Foto (URL oder direkt hochladen)</label>
+    <input type="url" id="edit-image" placeholder="https://...jpg oder leer lassen">
+    <input type="file" id="edit-image-file" accept="image/*" style="margin-top:0.4rem;">
+    <small style="display:block; opacity:0.7; margin-top:0.25rem;">Tipp: Bilder werden lokal als Data-URL gespeichert (begrenzt durch Browser-Speicher, ca. 5 MB gesamt). Für GitHub besser eine relative URL (z. B. media/tag1.jpg) verwenden und die Datei ins Repo legen.</small>
+    <label>Video-URL (YouTube oder direkt, optional)</label>
+    <input type="url" id="edit-video" placeholder="https://youtube.com/... oder https://....mp4">
+    <label>Freitext</label>
+    <textarea id="edit-content"></textarea>
+    <label>Link (Button)</label>
+    <input type="url" id="edit-link" placeholder="https://...">
+    <label>Button-Text</label>
+    <input type="text" id="edit-linktext" placeholder="Mehr erfahren">
+    <div style="margin-top:1rem;">
+      <button type="submit" class="btn">Speichern</button>
+      <button type="button" class="btn secondary" id="cancel-edit">Abbrechen</button>
+    </div>
+  </form>
+  <div style="margin-top:1.5rem;">
+    <button class="btn" id="export-btn">Daten exportieren (JSON)</button>
+    <button class="btn secondary" id="import-btn">Daten importieren</button>
+    <input type="file" id="import-file" accept=".json" style="display:none;">
+    <button class="btn secondary" id="reset-btn">Zurücksetzen</button>
+    <label style="margin-top:1rem; display:flex; align-items:center; gap:0.5rem;">
+      <input type="checkbox" id="test-mode"> Testmodus (alle Türchen öffnen, unabhängig vom Datum)
+    </label>
+  </div>
+</div>
+
+<!-- Impressum & Datenschutz Modal -->
+<div class="modal" id="legal-modal">
+  <div class="modal-content" style="padding:0;">
+    <div class="modal-header" style="background:#3a1d1d;">
+      <button class="modal-close" id="legal-close">✕</button>
+      <h2 id="legal-title" style="margin:0; font-size:1.4rem;">Impressum</h2>
+    </div>
+    <div class="modal-body" id="legal-body" style="font-size:0.95rem; line-height:1.55;"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+  try {
+    const DEFAULT_DAYS = Array.from({length:24}, (_,i) => ({
+      day: i+1,
+      title: i === 23 ? "Frohe Weihnachten!" : "Inhalt folgt",
+      subtitle: i === 23 ? "Ein herzlicher Gruß" : "",
+      cat: i === 23 ? "surprise" : "empty",
+      image: "",
+      video: "",
+      content: i === 23 ? "Frohe Weihnachten und ein gutes neues Jahr! 🎄✨" : "Hier kommt bald etwas Spannendes...",
+      link: "",
+      linkText: ""
+    }));
+
+    function safeGet(key, fallback) {
+      try {
+        const v = localStorage.getItem(key);
+        return v ? JSON.parse(v) : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+    function safeSet(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch (e) {
+        console.warn('localStorage nicht verfügbar', e);
+      }
+    }
+
+    let days = safeGet('adventDays', DEFAULT_DAYS);
+    let opened = safeGet('adventOpened', []);
+    let testMode = safeGet('adventTest', false);
+
+    function save() {
+      safeSet('adventDays', days);
+      safeSet('adventOpened', opened);
+      safeSet('adventTest', testMode);
+    }
+
+    function canOpen(day) {
+      if (testMode) return true;
+      const now = new Date();
+      const target = new Date(now.getFullYear(), 11, day);
+      return now >= target;
+    }
+
+    function renderCalendar() {
+      const cal = document.getElementById('calendar');
+      if (!cal) return;
+      cal.innerHTML = '';
+
+      // Reihenfolge mischen (deterministisch, damit es stabil bleibt)
+      const shuffled = [...days].sort((a, b) => {
+        const seedA = (a.day * 17 + 42) % 24;
+        const seedB = (b.day * 17 + 42) % 24;
+        return seedA - seedB;
+      });
+
+      shuffled.forEach(d => {
+        const el = document.createElement('div');
+        const wrap = ((d.day * 7) % 8) + 1;
+        el.className = `door wrap-${wrap}`;
+        if (!canOpen(d.day) && !opened.includes(d.day)) el.classList.add('locked');
+        if (opened.includes(d.day)) el.classList.add('opened');
+        el.innerHTML = `
+          <div class="door-inner">
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
+            <div class="door-num">${d.day}</div>
+          </div>
+        `;
+        el.onclick = () => openDoor(d.day);
+        cal.appendChild(el);
+      });
+      const stats = document.getElementById('stats');
+      if (stats) stats.textContent = `${opened.length} von 24 geöffnet`;
+    }
+
+    function openDoor(day) {
+      const d = days.find(x => x.day === day);
+      if (!d) return;
+      if (!canOpen(day) && !opened.includes(day)) {
+        alert(`Türchen ${day} öffnet sich erst am ${day}. Dezember!`);
+        return;
+      }
+      if (!opened.includes(day)) {
+        opened.push(day);
+        save();
+        renderCalendar();
+      }
+
+      const catNames = {
+        veranstaltung: 'Veranstaltung',
+        tool: 'Digitales Tool',
+        info: 'Information',
+        surprise: 'Überraschung',
+        empty: 'Bald'
+      };
+      const header = document.getElementById('modal-header');
+      const badge = document.getElementById('modal-badge');
+      const titleEl = document.getElementById('modal-title');
+      const subEl = document.getElementById('modal-subtitle');
+      const body = document.getElementById('modal-body');
+
+      if (header) header.className = 'modal-header cat-' + (d.cat || 'empty');
+      if (badge) badge.textContent = catNames[d.cat] || d.cat || '';
+      if (titleEl) titleEl.textContent = d.title || '';
+      if (subEl) {
+        subEl.textContent = d.subtitle || '';
+        subEl.style.display = d.subtitle ? 'block' : 'none';
+      }
+
+      let media = '';
+      if (d.image) {
+        media += `<div class="modal-media"><img src="${d.image}" alt="${d.title || ''}"></div>`;
+      }
+      if (d.video) {
+        if (d.video.includes('youtube.com') || d.video.includes('youtu.be')) {
+          let vid = d.video;
+          if (vid.includes('youtu.be/')) vid = vid.split('youtu.be/')[1].split('?')[0];
+          else if (vid.includes('v=')) vid = vid.split('v=')[1].split('&')[0];
+          media += `<div class="modal-media"><iframe src="https://www.youtube.com/embed/${vid}" allowfullscreen></iframe></div>`;
+        } else {
+          media += `<div class="modal-media"><video controls src="${d.video}"></video></div>`;
+        }
+      }
+
+      const text = (d.content || '').replace(/\n/g, '<br>');
+      const btn = d.link ? `<a class="modal-btn" href="${d.link}" target="_blank" rel="noopener">${d.linkText || 'Zum Link'}</a>` : '';
+
+      if (body) body.innerHTML = media + (text ? `<div class="modal-text">${text}</div>` : '') + btn;
+
+      const modal = document.getElementById('modal');
+      if (modal) modal.classList.add('open');
+    }
+
+    const modalClose = document.getElementById('modal-close');
+    if (modalClose) modalClose.onclick = () => {
+      const m = document.getElementById('modal');
+      if (m) m.classList.remove('open');
+    };
+    const modalEl = document.getElementById('modal');
+    if (modalEl) modalEl.onclick = (e) => { if (e.target.id === 'modal') modalEl.classList.remove('open'); };
+
+    // Snowflakes
+    const snow = document.getElementById('snow');
+    if (snow) {
+      for (let i = 0; i < 30; i++) {
+        const flake = document.createElement('div');
+        flake.className = 'snowflake';
+        flake.textContent = '❄';
+        flake.style.left = Math.random() * 100 + '%';
+        flake.style.animationDuration = (Math.random() * 10 + 8) + 's';
+        flake.style.animationDelay = (Math.random() * 5) + 's';
+        flake.style.fontSize = (Math.random() * 1 + 0.8) + 'em';
+        snow.appendChild(flake);
+      }
+    }
+
+    // Admin
+    const adminPanel = document.getElementById('admin-panel');
+    const adminLink = document.getElementById('admin-link');
+    if (adminLink && adminPanel) {
+      adminLink.onclick = (e) => {
+        e.preventDefault();
+        if (confirm('Admin-Bereich öffnen?')) {
+          adminPanel.classList.add('active');
+          renderAdminDays();
+          const tm = document.getElementById('test-mode');
+          if (tm) tm.checked = testMode;
+          window.scrollTo(0, document.body.scrollHeight);
+        }
+      };
+    }
+
+    function renderAdminDays() {
+      const list = document.getElementById('admin-days');
+      if (!list) return;
+      list.innerHTML = days.map(d => `<div class="day-item" data-day="${d.day}">Tag ${d.day}: ${d.title || ''}</div>`).join('');
+      list.querySelectorAll('.day-item').forEach(el => {
+        el.onclick = () => editDay(parseInt(el.dataset.day));
+      });
+    }
+
+    function editDay(day) {
+      const d = days.find(x => x.day === day);
+      if (!d) return;
+      document.getElementById('edit-day').value = day;
+      document.getElementById('edit-title').value = d.title || '';
+      document.getElementById('edit-subtitle').value = d.subtitle || '';
+      document.getElementById('edit-cat').value = d.cat || 'empty';
+      document.getElementById('edit-image').value = d.image || '';
+      document.getElementById('edit-video').value = d.video || '';
+      document.getElementById('edit-content').value = d.content || '';
+      document.getElementById('edit-link').value = d.link || '';
+      document.getElementById('edit-linktext').value = d.linkText || '';
+      const form = document.getElementById('admin-form');
+      if (form) form.style.display = 'block';
+    }
+
+    const adminForm = document.getElementById('admin-form');
+    if (adminForm) {
+      adminForm.onsubmit = (e) => {
+        e.preventDefault();
+        const day = parseInt(document.getElementById('edit-day').value);
+        const idx = days.findIndex(x => x.day === day);
+        if (idx === -1) return;
+        days[idx] = {
+          day,
+          title: document.getElementById('edit-title').value,
+          subtitle: document.getElementById('edit-subtitle').value,
+          cat: document.getElementById('edit-cat').value,
+          image: document.getElementById('edit-image').value,
+          video: document.getElementById('edit-video').value,
+          content: document.getElementById('edit-content').value,
+          link: document.getElementById('edit-link').value,
+          linkText: document.getElementById('edit-linktext').value
+        };
+        save();
+        renderCalendar();
+        renderAdminDays();
+        adminForm.style.display = 'none';
+        alert('Gespeichert!');
+      };
+    }
+
+    const cancelEdit = document.getElementById('cancel-edit');
+    if (cancelEdit) cancelEdit.onclick = () => {
+      const f = document.getElementById('admin-form');
+      if (f) f.style.display = 'none';
+    };
+
+    const testModeEl = document.getElementById('test-mode');
+    if (testModeEl) {
+      testModeEl.onchange = (e) => {
+        testMode = e.target.checked;
+        save();
+        renderCalendar();
+      };
+    }
+
+    const exportBtn = document.getElementById('export-btn');
+    if (exportBtn) exportBtn.onclick = () => {
+      const blob = new Blob([JSON.stringify(days, null, 2)], {type: 'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'advent-kalender.json';
+      a.click();
+    };
+
+    const importBtn = document.getElementById('import-btn');
+    const importFile = document.getElementById('import-file');
+    if (importBtn && importFile) {
+      importBtn.onclick = () => importFile.click();
+      importFile.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            days = JSON.parse(reader.result);
+            save();
+            renderCalendar();
+            renderAdminDays();
+            alert('Importiert!');
+          } catch(err) { alert('Ungültige Datei'); }
+        };
+        reader.readAsText(file);
+      };
+    }
+
+    const resetBtn = document.getElementById('reset-btn');
+    if (resetBtn) resetBtn.onclick = () => {
+      if (confirm('Wirklich alle Inhalte zurücksetzen?')) {
+        days = JSON.parse(JSON.stringify(DEFAULT_DAYS));
+        opened = [];
+        save();
+        renderCalendar();
+        renderAdminDays();
+      }
+    };
+
+    // Image file to data URL
+    const imageFileInput = document.getElementById('edit-image-file');
+    if (imageFileInput) {
+      imageFileInput.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (file.size > 2 * 1024 * 1024) {
+          alert('Bitte ein Bild unter 2 MB wählen (Speicherplatz im Browser ist begrenzt).');
+          imageFileInput.value = '';
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+          document.getElementById('edit-image').value = reader.result;
+        };
+        reader.readAsDataURL(file);
+      };
+    }
+
+    // Legal modals
+    const legalModal = document.getElementById('legal-modal');
+    const legalClose = document.getElementById('legal-close');
+    const legalTitle = document.getElementById('legal-title');
+    const legalBody = document.getElementById('legal-body');
+
+    if (legalClose) legalClose.onclick = () => legalModal && legalModal.classList.remove('open');
+    if (legalModal) legalModal.onclick = (e) => { if (e.target.id === 'legal-modal') legalModal.classList.remove('open'); };
+
+    const impressumHtml = `
+      <h3>Impressum</h3>
+      <p><strong>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</strong></p>
+      <p>Medienpädagogisches Zentrum Mecklenburg-Vorpommern (MPZ)<br>
+      Am Kabutzenhof 21<br>
+      18057 Rostock</p>
+      <p><strong>Vertreten durch:</strong><br>Dr. Jan Hartmann (Leiter)</p>
+      <p><strong>Kontakt:</strong><br>Telefon: 0385 588 17390</p>
+      <p><strong>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</strong><br>
+      Matthias Kloß,<br>
+      Medienpädagogisches Zentrum (MPZ)<br>
+      Neustrelitzer Straße 120<br>
+      17033 Neubrandenburg</p>
+      <h4>Haftungshinweis</h4>
+      <p>Die Inhalte dieser Seite wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Für die Inhalte externer Links übernehmen wir keine Haftung. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+      <p style="margin-top:1rem; font-size:0.85rem; opacity:0.8;">Hinweis: Dieser Kalender ist eine eigenständige HTML-Datei. Inhalte und geöffnete Türchen werden ausschließlich lokal im Browser des Nutzers gespeichert.</p>
+    `;
+
+    const datenschutzHtml = `
+      <h3>Datenschutzerklärung</h3>
+      <h4>1. Verantwortliche Stelle</h4>
+      <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+      <p>Medienpädagogisches Zentrum Mecklenburg-Vorpommern (MPZ)<br>
+      Am Kabutzenhof 21<br>
+      18057 Rostock<br>
+      Telefon: 0385 588 17390</p>
+      <h4>2. Allgemeine Hinweise</h4>
+      <p>Der Adventskalender ist ein rein informatives Angebot. Es ist keine Anmeldung erforderlich und es werden keine personenbezogenen Daten der Nutzerinnen und Nutzer (z. B. Name, E-Mail-Adresse) von uns gespeichert.</p>
+      <h4>3. Lokale Speicherung (Local Storage)</h4>
+      <p>Welche Türchen bereits geöffnet wurden und die von Ihnen eingepflegten Inhalte (Texte, Bilder als Data-URLs, Links) werden ausschließlich lokal in Ihrem Browser gespeichert (Local Storage). Diese Informationen werden nicht an uns oder Dritte übertragen und können jederzeit durch Löschen der Browserdaten entfernt werden.</p>
+      <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bereitstellung eines funktionsfähigen Angebots) bzw. Ihre Einwilligung durch Nutzung.</p>
+      <h4>4. Hosting</h4>
+      <p>Diese Datei kann lokal geöffnet oder von Ihnen selbst gehostet werden. Beim Aufruf über einen Webserver können technische Daten (IP-Adresse, Datum/Uhrzeit, Browser) vom jeweiligen Hoster verarbeitet werden. Bitte beachten Sie die Datenschutzhinweise Ihres Hosting-Anbieters.</p>
+      <h4>5. Externe Links und Medien</h4>
+      <p>Die Türchen können Links zu externen Angeboten sowie eingebettete Bilder/Videos (z. B. YouTube) enthalten. Für die Datenverarbeitung auf diesen Seiten sind ausschließlich die jeweiligen Betreiber verantwortlich.</p>
+      <h4>6. Ihre Rechte</h4>
+      <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch gegen die Verarbeitung Ihrer Daten. Außerdem haben Sie das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren.</p>
+      <p><strong>Zuständige Aufsichtsbehörde für Mecklenburg-Vorpommern:</strong><br>
+      Der Landesbeauftragte für Datenschutz und Informationsfreiheit Mecklenburg-Vorpommern<br>
+      Werderstraße 74a<br>
+      19055 Schwerin<br>
+      Telefon: +49 385 59494 0<br>
+      E-Mail: info@datenschutz-mv.de<br>
+      Webseite: www.datenschutz-mv.de</p>
+      <h4>7. Änderungen</h4>
+      <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht.</p>
+      <p style="margin-top:1rem; font-size:0.85rem; opacity:0.8;">Stand: November 2026 – angepasst an die lokale Speicherung ohne externe Plattform.</p>
+    `;
+
+    const impressumLink = document.getElementById('impressum-link');
+    const datenschutzLink = document.getElementById('datenschutz-link');
+
+    if (impressumLink) impressumLink.onclick = (e) => {
+      e.preventDefault();
+      if (legalTitle) legalTitle.textContent = 'Impressum';
+      if (legalBody) legalBody.innerHTML = impressumHtml;
+      if (legalModal) legalModal.classList.add('open');
+    };
+    if (datenschutzLink) datenschutzLink.onclick = (e) => {
+      e.preventDefault();
+      if (legalTitle) legalTitle.textContent = 'Datenschutz';
+      if (legalBody) legalBody.innerHTML = datenschutzHtml;
+      if (legalModal) legalModal.classList.add('open');
+    };
+
+    // Init
+    renderCalendar();
+
+    // Hidden link via hash
+    if (location.hash === '#admin' || location.search.includes('admin=1')) {
+      if (adminPanel) {
+        adminPanel.classList.add('active');
+        renderAdminDays();
+        const tm = document.getElementById('test-mode');
+        if (tm) tm.checked = testMode;
+      }
+    }
+  } catch (err) {
+    console.error('Kalender-Fehler:', err);
+    document.body.insertAdjacentHTML('beforeend', '<p style="color:red;text-align:center;padding:1rem;">Ein Fehler ist aufgetreten. Bitte Seite neu laden oder Konsole prüfen.</p>');
+  }
+})();
+</script>
+</body>
+</html>
