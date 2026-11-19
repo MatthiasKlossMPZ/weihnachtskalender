@@ -472,12 +472,12 @@ footer {
       <option value="surprise">Überraschung (blau)</option>
       <option value="empty">Leer / folgt</option>
     </select>
-    <label>Foto (URL oder direkt hochladen)</label>
-    <input type="url" id="edit-image" placeholder="https://...jpg oder leer lassen">
+    <label>Foto (URL, relativer Pfad oder direkt hochladen)</label>
+    <input type="text" id="edit-image" placeholder="https://...jpg oder media/tag1.jpg">
     <input type="file" id="edit-image-file" accept="image/*" style="margin-top:0.4rem;">
     <small style="display:block; opacity:0.7; margin-top:0.25rem;">Tipp: Bilder werden lokal als Data-URL gespeichert (begrenzt durch Browser-Speicher, ca. 5 MB gesamt). Für GitHub besser eine relative URL (z. B. media/tag1.jpg) verwenden und die Datei ins Repo legen.</small>
-    <label>Video-URL (YouTube oder direkt, optional)</label>
-    <input type="url" id="edit-video" placeholder="https://youtube.com/... oder https://....mp4">
+    <label>Video-URL oder relativer Pfad (YouTube, direkt oder media/video.mp4, optional)</label>
+    <input type="text" id="edit-video" placeholder="https://youtube.com/... oder media/tag5.mp4">
     <label>Freitext</label>
     <textarea id="edit-content"></textarea>
     <label>Link (Button)</label>
